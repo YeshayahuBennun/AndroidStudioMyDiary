@@ -15,12 +15,13 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:contentDescription="@string/todo"
+        android:focusable="true"
+        android:onClick="createNewDiary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
-        android:contentDescription="@string/todo"
-        android:focusable="true" />
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view"
