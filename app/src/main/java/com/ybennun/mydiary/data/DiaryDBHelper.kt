@@ -17,16 +17,16 @@ class DiaryDBHelper(context: Context) :
         private const val DATABASE_VERSION = 1
         private const val SQL_CREATE_DIARY_TABLE = "CREATE TABLE {$TABLE_NAME} (" +
                 "{$_ID INTEGER PRIMARY KEY AUTOINCREMENT, }" +
-                "{$COLUMN_DATE TEXT, }" +
-                "{$COLUMN_TITLE TEXT, }" +
+                "{$COLUMN_DATE TEXT, }"+
+                "{$COLUMN_TITLE TEXT, }"+
                 "{$COLUMN_DIARY TEXT} )"
 
-        private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS {$TABLE_NAME}"
+        private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $TABLE_NAME"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
 
-        db!!.execSQL(SQL_CREATE_DIARY_TABLE)
+        db!!.execSQL(com.ybennun.mydiary.data.DiaryDBHelper.Companion.SQL_CREATE_DIARY_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
