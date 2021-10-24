@@ -47,13 +47,13 @@ class DiaryActivity : AppCompatActivity() {
         val titleColumnIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE)
         val diaryColumnIndex = cursor.getColumnIndexOrThrow(COLUMN_DIARY)
 
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             val currentId = cursor.getInt(idColumnIndex)
             val currentDate = cursor.getString(dateColumnIndex)
             val currentTitle = cursor.getString(titleColumnIndex)
             val currentDiary = cursor.getString(diaryColumnIndex)
 
-            diaryList.add(Diary(currentId,currentDate,currentTitle,currentDiary))
+            diaryList.add(Diary(currentId, currentDate, currentTitle, currentDiary))
         }
 
         cursor.close()

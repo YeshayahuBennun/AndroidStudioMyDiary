@@ -1,5 +1,6 @@
 package com.ybennun.mydiary
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,10 @@ class DiaryAdapter(private var diaryList: MutableList<Diary>) :
         private var title: TextView
 
         override fun onClick(v: View?) {
-
+            val context = itemView.context
+            val intent = Intent(context,NewDiary::class.java)
+            intent.putExtra("IDofRow",diary.id)
+            context.startActivity(intent)
         }
 
         init {
