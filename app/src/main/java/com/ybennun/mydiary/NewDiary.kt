@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.content.contentValuesOf
 import com.ybennun.mydiary.data.DatabaseManager.DiaryEntry.COLUMN_DATE
 import com.ybennun.mydiary.data.DatabaseManager.DiaryEntry.COLUMN_DIARY
 import com.ybennun.mydiary.data.DatabaseManager.DiaryEntry.COLUMN_TITLE
@@ -79,12 +80,32 @@ class NewDiary : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.save_diary -> {
-                insertDiary()
+
+                if (id == 0) {
+                    insertDiary()
+
+                } else {
+                    updateDiary(id)
+                }
                 finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun updateDiary(id: Int) {
+
+        val mDBHelper = DiaryDBHelper(this)
+
+        val db = mDBHelper.writableDatabase
+
+        val values = ContentValues().apply {
+            put(COLUMN_TITLE, title_diary.text.toString())
+            put(COLUMN_DIARY, diary_text.text.toString())
+        }
+
+        db.update(TABLE_NAME, values, "$_ID = $id", null)
     }
 
     private fun insertDiary() {
