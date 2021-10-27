@@ -78,7 +78,7 @@ class NewDiary : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+        return when (item?.itemId) {
             R.id.save_diary -> {
 
                 if (id == 0) {
@@ -129,6 +129,29 @@ class NewDiary : AppCompatActivity() {
             Toast.makeText(this, "problem in inserting new diary", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "diary has been inserted $rowId", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+
+        if (id == 0) {
+            insertDiary()
+
+        } else {
+            updateDiary(id)
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        if (id == 0) {
+            insertDiary()
+
+        } else {
+            updateDiary(id)
         }
     }
 }
